@@ -13,7 +13,6 @@ public class User {
     private String password;
     private String email;
     private int balance;
-    private Set<String> languages;
     private Map<LocalDateTime, Lesson> lessons;
 
     public User() {
@@ -32,7 +31,6 @@ public class User {
         this.username = username;
         this.password = password;
         this.balance = 0;
-        this.languages = new TreeSet<>();
         lessons = new TreeMap<>();
     }
 
@@ -47,7 +45,6 @@ public class User {
         this.username = user.username;
         this.password = user.password;
         this.balance = user.balance;
-        this.languages = user.languages;
         this.lessons = user.lessons;
     }
 
@@ -72,9 +69,6 @@ public class User {
         }
         if (user.password != null) {
             this.password = user.password;
-        }
-        if (!user.languages.isEmpty()) {
-            this.languages.addAll(user.languages);
         }
         if (!user.lessons.isEmpty()) {
             this.lessons.putAll(user.lessons);
@@ -154,8 +148,8 @@ public class User {
 
     public String describe() {
         return "id=" + this.uuid + ", firstName='" + this.firstName + "', lastName='" + this.lastName + "'" +
-                ", username='" + this.username + "', email='" + this.email + "', balance=" + this.balance + ", languages=" + this.languages
-                + ", lessons=" + lessons;
+                ", username='" + this.username + "', email='" + this.email + "', balance=" + this.balance +
+                ", lessons=" + lessons;
     }
 
     public String toString() {
@@ -166,37 +160,11 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User user)) return false;
-        return getBalance() == user.getBalance() && Objects.equals(uuid, user.uuid) && Objects.equals(getFirstName(), user.getFirstName()) && Objects.equals(getLastName(), user.getLastName()) && Objects.equals(getUsername(), user.getUsername()) && Objects.equals(getEmail(), user.getEmail()) && Objects.equals(getLanguages(), user.getLanguages());
+        return getBalance() == user.getBalance() && Objects.equals(uuid, user.uuid) && Objects.equals(getFirstName(), user.getFirstName()) && Objects.equals(getLastName(), user.getLastName()) && Objects.equals(getUsername(), user.getUsername()) && Objects.equals(getEmail(), user.getEmail()) ;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(uuid, getFirstName(), getLastName(), getUsername(), getEmail(), getBalance(), getLanguages());
-    }
 
-    public List<String> getLanguages() {
-        return languages.stream().toList();
-    }
 
-    public void addLanguage(String language) {
-        this.languages.add(language);
-    }
-
-    public void removeLanguage(String language) {
-        this.languages.remove(language);
-    }
-
-    public boolean canCommunicateWith(User other) {
-        if (this.languages.isEmpty() || other.languages.isEmpty()) {
-            return false;
-        }
-        for (String language : this.languages) {
-            if (other.languages.contains(language)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     public Lesson getLesson(LocalDateTime timeslot) {
         return lessons.get(timeslot);
@@ -228,9 +196,6 @@ public class User {
         return oldRating;
     }
 
-    public void setLanguages(List<String> languages) {
-        this.languages = new TreeSet<>(languages);
-    }
 
     public List<Lesson> getLessons() {
         var sortedLessons = lessons.values().stream()
