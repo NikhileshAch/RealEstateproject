@@ -2,8 +2,9 @@ package ch.unil.doplab.studybuddy.domain;
 
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.stream.Collectors;
+import java.util.stream.Collector;
 
+// no
 public class User {
 
     private UUID uuid;
