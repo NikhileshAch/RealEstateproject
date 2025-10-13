@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
+// New class for the realestate
 public class User {
 
     private UUID uuid;
