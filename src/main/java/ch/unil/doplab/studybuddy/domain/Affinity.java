@@ -12,6 +12,7 @@ public class Affinity extends Topic {
     private String teacherBiography;
     private int teacherHourlyRate;
     private double teacherRating;
+    // test ett
 
     public Affinity(String title, String description, Level level, UUID studentID, String studentName, String studentEmail, UUID teacherID, String teacherName, String teacherEmail, String teacherDescription, int teacherHourlyRate, double teacherRating) {
         super(title, description, level != null ? EnumSet.of(level) : EnumSet.noneOf(Level.class));
