@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class Property {
-    // iuio
+    // iu
     public enum PropertyType {
         APARTMENT,
         HOUSE,
