@@ -6,11 +6,14 @@ import java.util.List;
 public class Buyer extends User {
     private double budget;
     private List<String> propertyTypesOfInterest;
+    private List<String> documents;
 
     public Buyer(String firstName, String lastName, String email, String username, String password, double budget) {
         super(firstName, lastName, email, username, password);
         this.budget = budget;
         this.propertyTypesOfInterest = new ArrayList<>();
+        this.documents = new ArrayList<>();
+
     }
 
     public double getBudget() { return budget; }
@@ -22,6 +25,7 @@ public class Buyer extends User {
         if (amount <= 0) throw new IllegalArgumentException("amount must be positive");
         return new Offer(property.getPropertyId(), this.getUserID(), amount);
     }
+
 
     @Override
     public String getRole() {
