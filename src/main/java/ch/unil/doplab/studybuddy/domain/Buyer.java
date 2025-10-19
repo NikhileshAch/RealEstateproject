@@ -12,7 +12,7 @@ public class Buyer extends User {
         super(firstName, lastName, email, username, password);
         this.budget = budget;
         this.propertyTypesOfInterest = new ArrayList<>();
-        this.documents = new ArrayList<>();
+//        this.documents = new ArrayList<>();
 
     }
 
@@ -25,6 +25,27 @@ public class Buyer extends User {
         if (amount <= 0) throw new IllegalArgumentException("amount must be positive");
         return new Offer(property.getPropertyId(), this.getUserID(), amount);
     }
+
+//    public List<String> getDocuments() {
+//        return this.documents;
+//    }
+//
+//    public void addDocument(String documentId) {
+//        if (documentId != null && !documentId.isEmpty() && !this.documents.contains(documentId)) {
+//            this.documents.add(documentId);
+//        }
+//    }
+
+    public void addPropertyTypeOfInterest(String propertyType) {
+        if (propertyType != null && !propertyType.isEmpty() && !this.propertyTypesOfInterest.contains(propertyType)) {
+            this.propertyTypesOfInterest.add(propertyType);
+        }
+    }
+
+    public void removePropertyTypeOfInterest(String propertyType) {
+        this.propertyTypesOfInterest.remove(propertyType);
+      }
+
 
 
     @Override
