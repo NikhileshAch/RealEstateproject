@@ -12,7 +12,7 @@ public class Buyer extends User {
         super(firstName, lastName, email, username, password);
         this.budget = budget;
         this.propertyTypesOfInterest = new ArrayList<>();
-//        this.documents = new ArrayList<>();
+        this.documents = new ArrayList<>();
 
     }
 
@@ -26,25 +26,35 @@ public class Buyer extends User {
         return new Offer(property.getPropertyId(), this.getUserID(), amount);
     }
 
-//    public List<String> getDocuments() {
-//        return this.documents;
-//    }
-//
-//    public void addDocument(String documentId) {
-//        if (documentId != null && !documentId.isEmpty() && !this.documents.contains(documentId)) {
-//            this.documents.add(documentId);
-//        }
-//    }
 
+    public List<String> getDocuments() {
+        return this.documents;
+    }
+
+    public void addDocument(String documentName) {
+        if (documentName != null && !documentName.isEmpty() && !this.documents.contains(documentName)) {
+            this.documents.add(documentName);
+        }
+    }
+    public void removeDocument(String documentName) {
+        this.documents.remove(documentName);
+    }
+
+    public List<String> getPropertyTypeOfInterest(){
+        return this.propertyTypesOfInterest;
+    }
     public void addPropertyTypeOfInterest(String propertyType) {
         if (propertyType != null && !propertyType.isEmpty() && !this.propertyTypesOfInterest.contains(propertyType)) {
             this.propertyTypesOfInterest.add(propertyType);
         }
     }
-
     public void removePropertyTypeOfInterest(String propertyType) {
         this.propertyTypesOfInterest.remove(propertyType);
-      }
+    }
+
+
+
+
 
 
 
