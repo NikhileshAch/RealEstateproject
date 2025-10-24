@@ -1,0 +1,12 @@
+ch/unil/doplab/studybuddy/domain/Property.class
+ch/unil/doplab/studybuddy/domain/Offer$Status.class
+ch/unil/doplab/studybuddy/domain/Seller.class
+ch/unil/doplab/studybuddy/domain/Offer.class
+ch/unil/doplab/studybuddy/domain/Property$PropertyStatus.class
+ch/unil/doplab/studybuddy/domain/Buyer.class
+ch/unil/doplab/studybuddy/domain/Property$PropertyType.class
+ch/unil/doplab/studybuddy/domain/PropertySearchCriteria.class
+ch/unil/doplab/studybuddy/domain/Message.class
+ch/unil/doplab/studybuddy/domain/Message$MessageDirection.class
+ch/unil/doplab/studybuddy/domain/PropertySearchCriteria$Builder.class
+ch/unil/doplab/studybuddy/domain/User.class
