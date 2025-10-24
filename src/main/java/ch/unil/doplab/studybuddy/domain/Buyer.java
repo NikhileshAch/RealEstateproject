@@ -21,11 +21,17 @@ public class Buyer extends User {
     public List<String> getPropertyTypesOfInterest() { return propertyTypesOfInterest; }
 
     public Offer placeOffer(Property property, double amount) {
-        if (property == null) throw new IllegalArgumentException("property is required");
-        if (amount <= 0) throw new IllegalArgumentException("amount must be positive");
+        if (property == null) throw new IllegalArgumentException("Property is required");
+        if (amount <= 0) throw new IllegalArgumentException("Amount must be positive");
         return new Offer(property.getPropertyId(), this.getUserID(), amount);
     }
-
+    public void withdrawOffer(Offer offer) {
+        if (offer != null && offer.getBuyerId().equals(this.getUserID())) {
+            offer.withdraw();
+        } else {
+            throw new IllegalArgumentException("Cannot withdraw this offer.");
+        }
+    }
 
     public List<String> getDocuments() {
         return this.documents;
@@ -52,6 +58,17 @@ public class Buyer extends User {
         this.propertyTypesOfInterest.remove(propertyType);
     }
 
+    public Review submitReview(String agentId, int rating, String comment) {
+        if (agentId == null || agentId.isEmpty()) {
+            throw new IllegalArgumentException("Agent ID cannot be null or empty.");
+        }
+
+        // Crée un nouvel objet Review
+        // "agent" est le type de sujet [cite: 195]
+        // agentId est l'identifiant du sujet
+        // rating et comment sont les données de l'avis [cite: 196, 197]
+        return new Review("agent", agentId, rating, comment);
+    }
 
 
 
