@@ -62,17 +62,14 @@ public class Buyer extends User {
         if (agentId == null || agentId.isEmpty()) {
             throw new IllegalArgumentException("Agent ID cannot be null or empty.");
         }
-
-        // Crée un nouvel objet Review
-        // "agent" est le type de sujet [cite: 195]
-        // agentId est l'identifiant du sujet
-        // rating et comment sont les données de l'avis [cite: 196, 197]
         return new Review("agent", agentId, rating, comment);
     }
-
-
-
-
+    public Viewing requestViewing(Property property, LocalDateTime timeSlot) {
+        if (property == null || timeSlot == null) {
+            throw new IllegalArgumentException("Property and time slot are required");
+        }
+        return new Viewing(timeSlot, property, this);
+    }
 
 
     @Override
