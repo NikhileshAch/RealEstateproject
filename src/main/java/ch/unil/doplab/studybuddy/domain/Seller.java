@@ -17,14 +17,38 @@ public class Seller extends User {
     public List<Property> getOwnedProperties() { return Collections.unmodifiableList(ownedProperties); }
     public List<Offer> getReceivedOffers() { return Collections.unmodifiableList(receivedOffers); }
 
+    public Property createProperty(String title, String description, String location,
+                                   double price, double size, Property.PropertyType type) {
+        Property property = new Property(title, this.getUserID(), description, location, price, size, type);
+        ownedProperties.add(property);
+        return property;
+    }
+
     public void publishProperty(Property property) {
         if (property == null) throw new IllegalArgumentException("property is required");
-        ownedProperties.add(property);
+        
+        // Ensure seller owns this property
+        if (!property.getOwnerId().equals(this.getUserID())) {
+            throw new IllegalArgumentException("Seller can only publish properties they own");
+        }
+        
+        if (!ownedProperties.contains(property)) {
+            ownedProperties.add(property);
+        }
         property.publish();
     }
 
     public void respondToOffer(Offer offer, boolean accept) {
         if (offer == null) throw new IllegalArgumentException("offer is required");
+        
+        // Verify this offer is for one of the seller's properties
+        boolean ownsProperty = ownedProperties.stream()
+                .anyMatch(p -> p.getPropertyId().equals(offer.getPropertyId()));
+        
+        if (!ownsProperty) {
+            throw new IllegalArgumentException("Seller can only respond to offers for their own properties");
+        }
+        
         if (!receivedOffers.contains(offer)) {
             receivedOffers.add(offer);
         }
