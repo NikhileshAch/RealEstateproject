@@ -25,13 +25,6 @@ public class Buyer extends User {
         if (amount <= 0) throw new IllegalArgumentException("Amount must be positive");
         return new Offer(property.getPropertyId(), this.getUserID(), amount);
     }
-    public void withdrawOffer(Offer offer) {
-        if (offer != null && offer.getBuyerId().equals(this.getUserID())) {
-            offer.withdraw();
-        } else {
-            throw new IllegalArgumentException("Cannot withdraw this offer.");
-        }
-    }
 
     public List<String> getDocuments() {
         return this.documents;
@@ -58,18 +51,6 @@ public class Buyer extends User {
         this.propertyTypesOfInterest.remove(propertyType);
     }
 
-    public Review submitReview(String agentId, int rating, String comment) {
-        if (agentId == null || agentId.isEmpty()) {
-            throw new IllegalArgumentException("Agent ID cannot be null or empty.");
-        }
-        return new Review("agent", agentId, rating, comment);
-    }
-    public Viewing requestViewing(Property property, LocalDateTime timeSlot) {
-        if (property == null || timeSlot == null) {
-            throw new IllegalArgumentException("Property and time slot are required");
-        }
-        return new Viewing(timeSlot, property, this);
-    }
 
 
     @Override
