@@ -2,7 +2,7 @@ package ch.unil.doplab.studybuddy.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//
 public class Buyer extends User {
     private double budget;
     private List<String> propertyTypesOfInterest;
