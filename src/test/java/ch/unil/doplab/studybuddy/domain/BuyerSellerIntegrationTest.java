@@ -109,7 +109,7 @@ class BuyerSellerIntegrationTest {
     void testBuyerCannotPlaceOfferOnNullProperty() {
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
                 () -> buyer.placeOffer(null, 500000));
-        assertTrue(ex.getMessage().contains("property is required"));
+        assertTrue(ex.getMessage().contains("Property is required"));
     }
 
     @Test
@@ -118,7 +118,7 @@ class BuyerSellerIntegrationTest {
         
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
                 () -> buyer.placeOffer(property, 0));
-        assertTrue(ex.getMessage().contains("amount must be positive"));
+        assertTrue(ex.getMessage().contains("Amount must be positive"));
     }
 
     @Test
@@ -127,7 +127,7 @@ class BuyerSellerIntegrationTest {
         
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
                 () -> buyer.placeOffer(property, -100000));
-        assertTrue(ex.getMessage().contains("amount must be positive"));
+        assertTrue(ex.getMessage().contains("Amount must be positive"));
     }
 
     @Test
@@ -176,8 +176,8 @@ class BuyerSellerIntegrationTest {
     void testPropertyTypesOfInterest() {
         assertTrue(buyer.getPropertyTypesOfInterest().isEmpty());
         
-        buyer.getPropertyTypesOfInterest().add("APARTMENT");
-        buyer.getPropertyTypesOfInterest().add("HOUSE");
+        buyer.addPropertyTypeOfInterest("APARTMENT");
+        buyer.addPropertyTypeOfInterest("HOUSE");
         
         assertEquals(2, buyer.getPropertyTypesOfInterest().size());
     }
